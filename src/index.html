@@ -8,29 +8,31 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-
-
     <main>
       <header>
-  <form id="search-form" class="search-form">
-    <input type="text" name="query" autocomplete="off" placeholder="Search images..." />
-    <button type="submit">Search</button>
-  </form>
-</header>
+        <!-- ✅ Виправлений form -->
+        <form id="search-form" class="form">
+          <input
+            type="text"
+            name="query"
+            autocomplete="off"
+            placeholder="Search images..."
+          />
+          <button type="submit">Search</button>
+        </form>
+      </header>
 
+      
+      <ul class="gallery"></ul>
 
-<div class="gallery"></div>
-<div class="load-more-wrapper">
-  <button type="button" class="load-more is-hidden">Load more</button>
-</div>
-<div class="loader-wrapper is-hidden">
-  <span class="loader"></span>
-</div>
+      <div class="load-more-wrapper">
+        <button type="button" class="load-more is-hidden">Load more</button>
+      </div>
 
-
+      <div class="loader-wrapper is-hidden">
+        <span class="loader"></span>
+      </div>
     </main>
-
-
 
     <script type="module" src="./main.js"></script>
   </body>
