@@ -5,7 +5,7 @@ let lightbox;
 
 export function createGallery(images) {
   const markup = images.map(image => `
-    <li class="photo-card">
+    <li class="photo-card gallery-item">
       <a href="${image.largeImageURL}">
         <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
       </a>
@@ -40,3 +40,24 @@ export function showLoader() {
 export function hideLoader() {
   document.querySelector('.loader-wrapper')?.classList.add('is-hidden');
 }
+
+export function showLoadMore() {
+  document.querySelector('.load-more')?.classList.remove('is-hidden');
+}
+
+export function hideLoadMore() {
+  document.querySelector('.load-more')?.classList.add('is-hidden');
+}
+
+export function scrollPage() {
+  const lastCard = document.querySelector('.gallery-item:last-child');
+
+  if (lastCard) {
+    const { height: cardHeight } = lastCard.getBoundingClientRect();
+    window.scrollBy({
+      top: cardHeight * 2,
+      behavior: 'smooth',
+    });
+  }
+}
+

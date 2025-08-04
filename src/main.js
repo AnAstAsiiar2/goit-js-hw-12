@@ -4,14 +4,15 @@ import {
   clearGallery,
   showLoader,
   hideLoader,
+  showLoadMore,
+  hideLoadMore,
+  scrollPage,
 } from './js/render-functions';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.querySelector('#search-form');
-const gallery = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
-const loaderContainer = document.querySelector('.loader-wrapper'); // <-- нове
 
 let query = '';
 let page = 1;
@@ -26,7 +27,7 @@ form.addEventListener('submit', async e => {
   page = 1;
   clearGallery();
   hideLoadMore();
-  hideLoader(); // раптом залишився
+  hideLoader();
   showLoader();
 
   try {
@@ -68,7 +69,6 @@ loadMoreBtn.addEventListener('click', async () => {
       });
     }
 
-    // Scroll down
     scrollPage();
   } catch (error) {
     iziToast.error({ message: 'Something went wrong while loading more images.' });
@@ -77,23 +77,4 @@ loadMoreBtn.addEventListener('click', async () => {
   }
 });
 
-function showLoadMore() {
-  loadMoreBtn.classList.remove('is-hidden');
-}
-function hideLoadMore() {
-  loadMoreBtn.classList.add('is-hidden');
-}
 
-// 👇 Плавне прокручування
-function scrollPage() {
-  const { height: cardHeight } = document
-    .querySelector('.gallery-item')
-    ?.getBoundingClientRect() || { height: 0 };
-
-  if (cardHeight > 0) {
-    window.scrollBy({
-      top: cardHeight * 2,
-      behavior: 'smooth',
-    });
-  }
-}
